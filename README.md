@@ -1,4 +1,4 @@
-# ☢️ Taranis: Standalone Radioembolization Dosimetry
+# ☢️ Standalone Radioembolization Dosimetry Platform
 ### *Integrated Precision Voxel-Based Dosimetry for Y-90 Radioembolization*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
