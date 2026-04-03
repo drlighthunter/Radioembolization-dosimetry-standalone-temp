@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+python-multipart
+SimpleITK
+numpy
+pydicom
+python-jose[cryptography]
+passlib[bcrypt]
+httpx

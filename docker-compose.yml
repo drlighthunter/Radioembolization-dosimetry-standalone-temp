@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # DICOM Server (Orthanc)
+  orthanc:
+    image: jodogne/orthanc-plugins:latest
+    ports:
+      - "8042:8042" # HTTP API / UI
+      - "4242:4242" # DICOM Protocol
+    environment:
+      - ORTHANC_NAME=TaranisOrthanc
+    volumes:
+      - orthanc-storage:/var/lib/orthanc/db
+
+  # Dosimetry Backend Logic
+  backend:
+    build:
+      context: .
+      dockerfile: app/docker/Dockerfile.backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app/backend:/app/app/backend
+    depends_on:
+      - orthanc
+
+  # OHIF Viewer
+  ohif:
+    image: ohif/viewer:latest
+    ports:
+      - "3000:80"
+    volumes:
+      - ./app/frontend/app-config.js:/usr/share/nginx/html/app-config.js
+    depends_on:
+      - orthanc
+
+volumes:
+  orthanc-storage:
